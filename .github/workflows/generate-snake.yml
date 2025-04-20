@@ -1,10 +1,9 @@
-# manually triggered update
 name: Generate Snake
 
 on:
   schedule:
     - cron: "0 */6 * * *" # every 6 hours
-  workflow_dispatch: # lets you run manually
+  workflow_dispatch:
 
 jobs:
   build:
@@ -19,8 +18,8 @@ jobs:
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            dist/github-contribution-grid-snake.svg
-            dist/github-contribution-grid-snake-dark.svg
+            dist/github-contribution-grid-snake.svg?color_snake=#5D3FD3&speed=50
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=#5D3FD3&speed=50
 
       - name: Push to output branch
         uses: JamesIves/github-pages-deploy-action@v4
@@ -30,3 +29,4 @@ jobs:
           clean: true
           single-commit: true
           token: ${{ secrets.GITHUB_TOKEN }}
+          
